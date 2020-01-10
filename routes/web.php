@@ -18,11 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Entered only by users with roles = logged in
+// Entered by users with roles = logged in
 Route::middleware('roles')->group(function () {
 
     Route::get('/product-configurator', 'ProductsController@create')
@@ -33,6 +33,7 @@ Route::middleware('roles')->group(function () {
 
     Route::get('/myaccount', 'UsersController@index')->name('myaccount.index');
 });
+
 // URLS with admin prefix entered by admin only - grouping middleware by role "admin"
 Route::group([
     // naming doesn't work
@@ -47,6 +48,8 @@ Route::group([
 
     Route::get('/users', 'AdminController@show_users')->name('users');
 
+    Route::delete('/users/{id}', 'AdminController@delete_user')->name('delete_user');
+
     Route::get('/products', 'AdminController@show_products')->name('products');
 
     Route::get('/product/{id}', 'AdminController@show_product')
@@ -57,9 +60,4 @@ Route::group([
 
     Route::delete('/product/{id}', 'AdminController@delete_product')
         ->where('id', '[0-9]+')->name('delete_product');
-
-    // updating order by admin in the db
-    // Route::post('/product/{id}', 'AdminController@update_product')
-    //     ->where('id', '[0-9]+')->name('store_product');
-
 });

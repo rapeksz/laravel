@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\User;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -15,7 +16,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return "View with admin options";
+        return view('admin.panel');
     }
 
     /**
@@ -39,7 +40,8 @@ class AdminController extends Controller
 
     public function show_users()
     {
-        return "All registered users";
+        $users = User::get();
+        return view('admin.users')->with('users', $users);
     }
 
     /**
@@ -113,8 +115,10 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete_user($id)
     {
-        //
+        //DB::table('users')->where('id', $id)->delete();
+        User::find($id)->delete();
+        return redirect('admin/users');
     }
 }

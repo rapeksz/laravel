@@ -26,7 +26,6 @@
                 <td>{{ $product->color }}</td>
                 <td>{{ $product->height }}</td>
                 <td>{{ $product->width }}</td>
-                {{-- Update button - form --}}
                 <td>
                     <a href="/admin/product/{{ $product->id }}">Edit</a>
                 </td>

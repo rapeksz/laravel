@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Product configurator</title>
+        <title>Admin panel</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -65,28 +65,15 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        {{--  --}}
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Platform
+                    Admin
                 </div>
 
                 <div class="links">
-                    <a href="/admin">Admin panel</a>
-                    <a href="/product-configurator">Product configurator</a>
+                    <a href="/admin/users">Users</a>
+                    <a href="/admin/products">Products</a>
                 </div>
             </div>
         </div>

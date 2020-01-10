@@ -12,22 +12,6 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="js/my_code.js" defer></script>
-    <script>
-    function createForm() {
-        var prodcolor = document.getElementByName("color-picker").value;
-        var pheight = document.getElementByName("height-picker").value;
-        var ph = pheight + "px";
-        var pwidth = document.getElementByName("width-picker").value;
-        var pw = pwidth + "px";
-
-        var square = document.createElement("div");
-        square.className = 'created-product';
-        square.style.backgroundColor = prodcolor;
-        square.style.height = ph;
-        square.style.width = pw;
-        document.getElementByName("test").appendChild(square);
-    }
-    </script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
