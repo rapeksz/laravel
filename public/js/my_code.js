@@ -14,3 +14,19 @@ function createForm() {
     document.removeChild(test);
     document.getElementsByName("test")[0].appendChild(square);
 }
+
+function disableForms() {
+    var select_color = document.getElementById("product-color-one");
+    var insert_color = document.getElementById("product-color-two");
+
+    if (select_color.value == "red" || select_color.value == "yellow" || select_color.value == "blue") {
+        insert_color.disabled = true;
+    }
+    else if (insert_color.value !== null) {
+        select_color.disabled = true;
+    }
+    else {
+        //
+    }
+
+}
