@@ -11,7 +11,68 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="js/my_code.js" defer></script>
+    {{-- <script src="js/my_code.js" defer></script> --}}
+    <script>
+
+    function drawSquare() {
+
+        var elementOne = document.getElementsByName('placeForSquare')[0];
+        var elementTwo = document.getElementsByClassName('createdBox')[0];
+        var elementThree = document.getElementsByClassName('preview-product')[0];
+
+        if (elementThree) {
+            elementOne.removeChild(elementThree)
+        } else if (elementTwo) {
+            elementOne.removeChild(elementTwo)
+        } else {
+            //
+        }
+
+        var productColor = document.getElementsByName('color-picker')[0].value;
+        var productHeight = document.getElementsByName('height-picker')[0].value;
+        var productWidth = document.getElementsByName('width-picker')[0].value;
+        var productHeightPx = productHeight + "px";
+        var productWidthPx = productWidth + "px";
+
+        var square = document.createElement('div');
+        square.className = 'preview-product';
+        square.style.backgroundColor = productColor;
+        square.style.height = productHeightPx;
+        square.style.width = productWidthPx;
+
+        var newDiv = document.getElementsByName('placeForSquare')[0];
+        newDiv.appendChild(square);
+
+        var select_color = document.getElementById('color-picker-one');
+        var insert_color = document.getElementById('color-picker-two');
+
+        if(select_color.hasAttribute("disabled")) {
+            select_color.removeAttribute("disabled");
+        } else if (insert_color.hasAttribute("disabled")) {
+            insert_color.removeAttribute("disabled");
+        }
+    }
+    </script>
+    <script>
+
+    function disableForms() {
+
+        var select_color = document.getElementById('color-picker-one');
+        var insert_color = document.getElementById('color-picker-two');
+
+        if (select_color.value == "red" || select_color.value == "yellow" || select_color.value == "blue") {
+            insert_color.disabled = true;
+        } else if (insert_color.value !== null) {
+            select_color.setAttribute("name", 'color-disabled');
+            select_color.disabled = true;
+        }
+        else {
+            //
+        }
+
+    }
+
+    </script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
