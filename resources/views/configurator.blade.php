@@ -13,15 +13,14 @@
                 <div class="form-group">
                     <label for="product-color">Color</label>
                     <select class="form-control" id="product-color-one" name="color-picker" onchange="disableForms()">
-                        <option disabled selected></option>
+                        <option selected>Choose color</option>
                         <option>yellow</option>
                         <option>red</option>
                         <option>blue</option>
                     </select>
 
                     <input type="text" id="product-color-two" placeholder="#" name="color-picker" class="form-control"
-                        onchange="disableForms()" value="<?php echo isset($_POST['color-picker']) ? $_POST['color-picker'] : '' ?>">
-
+                        onchange="disableForms()">
                 </div>
 
                 <div class="form-group">
@@ -36,7 +35,8 @@
                         value="<?php echo isset($_POST['width-picker']) ? $_POST['width-picker'] : '' ?>">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Generate</button>
-                <button class="btn btn-success btn-block" onclick="createForm();">Preview</button>
+                {{--  --}}
+                <button type="button" class="btn btn-success btn-block" onclick="createForm()">Preview</button>
             </form>
 
         </div>
