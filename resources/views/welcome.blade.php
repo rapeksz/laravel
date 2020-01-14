@@ -85,8 +85,16 @@
                 </div>
 
                 <div class="links">
-                    <a href="/admin">Admin panel</a>
-                    <a href="/product-configurator">Product configurator</a>
+                    @if (Auth::check())
+                        @if (auth()->user()->roles->where('name', 'Admin')->first())
+                            <a href="/admin">Admin panel</a>
+                        @endif
+
+                        @if (auth()->user()->roles->where('name', 'User')->first())
+                            <a href="/myaccount/products">My account</a>
+                        @endif
+
+                    @endif
                 </div>
             </div>
         </div>

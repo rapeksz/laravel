@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -11,9 +14,11 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function show_allproducts()
     {
-        return "This is your account";
+        $user = Auth::user();
+        $user_products = Product::where('user_id', $user->id)->get();
+        return view('my_products', compact('user', 'user_products'));
     }
 
     /**
@@ -43,9 +48,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show_product($id)
     {
-        //
+        $product = Product::find($id);
+        return view('product')->with('product', $product);
     }
 
     /**

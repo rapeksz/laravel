@@ -121,4 +121,5 @@ class AdminController extends Controller
         User::find($id)->delete();
         return redirect('admin/users');
     }
+
 }

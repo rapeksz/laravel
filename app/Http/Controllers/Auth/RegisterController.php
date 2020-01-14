@@ -75,7 +75,6 @@ class RegisterController extends Controller
         ]);
 
         $user->roles()->attach(Role::where('name','User')->first());
-        Auth::login($user);
         Mail::to($data['email'])->send(new WelcomeMail());
         return $user;
     }

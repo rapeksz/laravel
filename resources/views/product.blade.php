@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-3">
 
-            <form action="{{ action('AdminController@update_product', $show_product) }}" method="post">
+            <form action="{{ action('AdminController@update_product', $product) }}" method="post">
             <input type="hidden" name="_method" value="PUT">
                 {{ csrf_field() }}
 
@@ -27,20 +27,20 @@
                 <div class="form-group">
                     <label for="product-height">Height</label><br>
                     <input type="number" id="height-picker" name="height-picker" class="form-control"
-                        value="{{ $show_product->height }}">
+                        value="{{ $product->height }}">
                 </div>
 
                 <div class="form-group">
                     <label for="product-width">Width</label><br>
                     <input type="number" id="width-picker" name="width-picker" class="form-control"
-                        value="{{ $show_product->width }}">
+                        value="{{ $product->width }}">
                 </div>
 
                 <button type="submit" class="btn btn-success btn-block">Update</button>
 
             </form>
 
-                <form action="{{ action('AdminController@delete_product', $show_product) }}" method="post">
+                <form action="{{ action('AdminController@delete_product', $product) }}" method="post">
                 <input type="hidden" name="_method" value="DELETE">
                     {{ csrf_field() }}
                     <div class="form-group">
@@ -54,8 +54,8 @@
 
         <div class="col-md-9">
             <div class="d-flex justify-content-center" name="placeForSquare">
-                    <div class="createdBox" style="height:{{ $show_product->height }}px;
-                        background-color:{{ $show_product->color }}; width: {{ $show_product->width }}px">
+                    <div class="createdBox" style="height:{{ $product->height }}px;
+                        background-color:{{ $product->color }}; width: {{ $product->width }}px">
                     </div>
             </div>
         </div>

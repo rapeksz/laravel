@@ -21,10 +21,10 @@ class CheckRole
             // Actions of given route
             $actions = $request->route()->getAction();
             // Prints above-mentioned actions
-            // var_dump($actions);
+            //print_r($actions);
 
             // $actions['roles'] -> web.php -> 'roles' => 'Admin' / ['Admin', 'User']
-            $roles = isset($actions['roles']) ? $actions['roles'] : null;
+            $roles = (isset($actions['roles']) ? $actions['roles'] : null);
 
             if ($request->user()->hasAnyRole($roles) || !$roles) {
                 return $next($request);
