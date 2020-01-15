@@ -7,6 +7,8 @@ use App\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+
+
 class ProductsController extends Controller
 {
     /**
@@ -45,7 +47,8 @@ class ProductsController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        return view('configurator')->with('new_product', $new_product);
+        return view('configurator')->with('new_product', $new_product)
+            ->with('success','Product has been created!');
     }
 
     /**

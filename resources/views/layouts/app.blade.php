@@ -61,6 +61,7 @@
         var insert_color = document.getElementById('color-picker-two');
 
         if (select_color.value == "red" || select_color.value == "yellow" || select_color.value == "blue") {
+            //select_color.setAttribute("name", 'color-disabled');
             insert_color.disabled = true;
         } else if (insert_color.value !== null) {
             select_color.setAttribute("name", 'color-disabled');

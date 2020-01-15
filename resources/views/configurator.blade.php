@@ -3,8 +3,9 @@
 @section('content')
 
 <div class="container">
-
+    @include('flashmessages')
     <div class="row">
+
         <div class="col-md-3">
 
             <form action="{{ action('ProductsController@store') }}" method="post" name="productform">
@@ -49,6 +50,7 @@
                     <div class="createdBox" style="height: {{ $new_product->height }}px;
                         background-color: {{ $new_product->color }}; width: {{ $new_product->width }}px">
                     </div>
+
                 @else()
 
                 @endif
