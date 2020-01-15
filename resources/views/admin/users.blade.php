@@ -31,11 +31,12 @@
                     </form>
                 </td>
                 <td>
-                    <button type="submit" class="btn btn-primary btn-block">Edit</button>
+                    <a href="/admin/user/{{ $user->id }}"><button type="submit" class="btn btn-primary btn-block">Edit</button></a>
                 </td>
             </tr>
         @endforeach
         </tbody>
+
     </table>
     <a href="/admin/users/create"><button type="submit" class="btn btn-success">Add new user</button>
 </div>

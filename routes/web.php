@@ -52,6 +52,10 @@ Route::middleware('verified')->group(function () {
 
         Route::get('/users', 'AdminController@show_users')->name('users');
 
+        Route::get('/user/{id}', 'AdminController@show_user');
+
+        Route::post('/user/{id}', 'AdminController@update_user');
+
         Route::get('/users/create', 'AdminController@create_user_form');
 
         Route::post('/users/create', 'AdminController@create_user_db');

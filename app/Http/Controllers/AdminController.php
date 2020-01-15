@@ -63,9 +63,10 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function show_user($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.show_user')->with('user', $user);
     }
 
     /**
@@ -120,7 +121,6 @@ class AdminController extends Controller
         $update_product->width = request('width-picker');
         $update_product->save();
         return redirect('/admin/products');
-
     }
 
     /**
@@ -134,6 +134,18 @@ class AdminController extends Controller
         //DB::table('users')->where('id', $id)->delete();
         User::find($id)->delete();
         return redirect('admin/users');
+    }
+
+    public function update_user(Request $request, $id)
+    {
+        $update_user = User::find($id);
+        $update_user->name = request('newuser_name');
+        $update_user->email = request('newuser_email');
+        $update_user->password = bcrypt(request('newuser_password'));
+        $update_user->save();
+
+        return view('admin.create_user')->with('success', 'User data has been updated!');
+
     }
 
 }
