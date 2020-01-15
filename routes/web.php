@@ -52,7 +52,12 @@ Route::middleware('verified')->group(function () {
 
         Route::get('/users', 'AdminController@show_users')->name('users');
 
-        Route::delete('/users/{id}', 'AdminController@delete_user')->name('delete_user');
+        Route::get('/users/create', 'AdminController@create_user_form');
+
+        Route::post('/users/create', 'AdminController@create_user_db');
+
+        Route::delete('/users/{id}', 'AdminController@delete_user')
+            ->where('id', '[0-9]+')->name('delete_user');
 
         Route::get('/products', 'AdminController@show_products')->name('products');
 

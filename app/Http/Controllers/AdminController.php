@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\User;
+use App\Role;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -73,11 +74,24 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function update_product($id)
-    // {
-    //     //
-    //
-    // }
+    public function create_user_form()
+    {
+        return view('admin.create_user');
+
+    }
+
+    public function create_user_db(Request $request)
+    {
+        $new_user = User::create([
+            'name' => request('newuser_name'),
+            'email' => request('newuser_email'),
+            'password' => bcrypt(request('newuser_password')),
+        ]);
+
+        $new_user->roles()->attach(Role::where('name','User')->first());
+
+        return view('admin.create_user')->with('success', 'User has been created!');
+    }
 
     /**
      * Show the form for editing the specified resource.

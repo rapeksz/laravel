@@ -12,6 +12,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Created at</th>
                 <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
         </thead>
 
@@ -29,10 +30,14 @@
                         <button type="submit" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger btn-block">Delete</button>
                     </form>
                 </td>
+                <td>
+                    <button type="submit" class="btn btn-primary btn-block">Edit</button>
+                </td>
             </tr>
         @endforeach
         </tbody>
     </table>
+    <a href="/admin/users/create"><button type="submit" class="btn btn-success">Add new user</button>
 </div>
 
 @endsection
