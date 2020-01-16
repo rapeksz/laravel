@@ -40,13 +40,16 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         'email_verified_at' => 'datetime',
     ];
 
-    // $this->products()
     public function products()
     {
         return $this->hasMany('App\Product');
     }
 
-    // $this->roles()
+    public function customisedProducts()
+    {
+        return $this->hasMany('App\CustomisedProduct');
+    }
+
     public function roles()
     {
         // model + optional parametres -> linking table, foreign key, other key

@@ -26,6 +26,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('verified')->group(function () {
     Route::middleware('roles')->group(function () {
 
+        Route::get('/customised-product', 'ProductsController@customise');
+        Route::post('/customised-product', 'ProductsController@customise_store');
+
         Route::get('/product-configurator', 'ProductsController@create')
             ->name('configurator.create');
 
@@ -36,6 +39,11 @@ Route::middleware('verified')->group(function () {
             ->name('myaccount.show_allproducts');
         Route::get('myaccount/products/{id}', 'UsersController@show_product' )
             ->name('myaccount.show_product');
+
+        Route::delete('/myaccount/products/{id}', 'UsersController@delete_product')
+            ->name('myaccount.delete_product');
+        Route::put('/myaccount/products/{id}', 'UsersController@update_product')
+            ->name('myaccount.update_product');
     });
 
     // URLS with admin prefix entered by admin only - grouping middleware by role "admin"

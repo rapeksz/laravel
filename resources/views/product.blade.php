@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-3">
 
-            <form action="{{ action('AdminController@update_product', $product) }}" method="post">
+            <form action="{{ action('UsersController@update_product', $product) }}" method="post">
             <input type="hidden" name="_method" value="PUT">
                 {{ csrf_field() }}
 
@@ -40,7 +40,7 @@
 
             </form>
 
-                <form action="{{ action('AdminController@delete_product', $product) }}" method="post">
+                <form action="{{ action('UsersController@delete_product', $product) }}" method="post">
                 <input type="hidden" name="_method" value="DELETE">
                     {{ csrf_field() }}
                     <div class="form-group">

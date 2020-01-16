@@ -72,9 +72,14 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update_product(Request $request, $id)
     {
-        //
+        $update_product = Product::find($id);
+        $update_product->color = request('color-picker');
+        $update_product->height = request('height-picker');
+        $update_product->width = request('width-picker');
+        $update_product->save();
+        return redirect('/myaccount/products');
     }
 
     /**
@@ -83,8 +88,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+     public function delete_product($id)
+     {
+         DB::table('products')->where('id', $id)->delete();
+         return redirect('/myaccount/products');
+     }
 }

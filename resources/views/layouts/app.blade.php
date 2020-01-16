@@ -74,6 +74,47 @@
     }
 
     </script>
+    <script>
+
+    function drawForm() {
+        var el_one = document.getElementsByName('placeForForm')[0];
+        var el_two = document.getElementsByName('customisedBox')[0];
+        var el_three = document.getElementsByClassName('preview-form')[0];
+
+        if(el_three) {
+            el_one.removeChild(el_three)
+        } else if (el_two) {
+            el_one.removeChild(el_two)
+        } else {
+            //
+        }
+
+        var prev_height = document.getElementsByName('attribute_height_value')[0].value;
+        var prev_height_px = prev_height + "px";
+        var prev_width = document.getElementsByName('attribute_width_value')[0].value;
+        var prev_width_px = prev_width + "px";
+        var prev_color = document.getElementsByName('attribute_color_value')[0].value;
+        var border = document.getElementsByName('attribute_border_value')[0].value;
+        var border_px = border + "px";
+        var border_color = document.getElementsByName('attribute_bordercolor_value')[0].value;
+        var border_radius = document.getElementsByName('attribute_borderradius_value')[0].value;
+        var border_radius_px = border_radius + "px";
+
+
+        var preview_form = document.createElement('div');
+        preview_form.className = 'preview-form';
+        preview_form.style.height = prev_height_px;
+        preview_form.style.width = prev_width_px;
+        preview_form.style.backgroundColor = prev_color;
+        preview_form.style.borderWidth = border_px;
+        preview_form.style.borderColor = border_color;
+        preview_form.style.borderStyle = 'solid';
+        preview_form.style.borderRadius = border_radius_px;
+
+        el_one.appendChild(preview_form);
+
+    }
+    </script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

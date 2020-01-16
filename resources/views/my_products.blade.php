@@ -6,6 +6,7 @@
 
 
 <div class="container">
+    @include('flashmessages')
     <table class="table">
 
         <thead class="thead-dark">
