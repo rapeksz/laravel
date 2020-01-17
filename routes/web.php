@@ -26,6 +26,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('verified')->group(function () {
     Route::middleware('roles')->group(function () {
 
+        Route::get('/personalised-product', 'ProductsController@personalise');
+        Route::post('/personalised-product', 'ProductsController@personalise_add_attributes');
+
+        Route::post('/personalised-product/generator', 'ProductsController@personalise_create_update');
+        Route::get('/personalised-product/generator', 'ProductsController@personalise_create');
+
         Route::get('/customised-product', 'ProductsController@customise');
         Route::post('/customised-product', 'ProductsController@customise_store');
 

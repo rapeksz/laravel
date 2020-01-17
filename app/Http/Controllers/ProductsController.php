@@ -9,7 +9,8 @@ use App\AttributeOption;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\CustomisedProduct;
-
+use Illuminate\Support\Facades\Redirect;
+// use Illuminate\Support\Facades\Request;
 
 class ProductsController extends Controller
 {
@@ -113,15 +114,31 @@ class ProductsController extends Controller
             ->with('success','Product has been created!');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function personalise()
     {
-        //
+        return view('personalise');
+    }
+
+    public function personalise_add_attributes(Request $request)
+    {
+        $attribute_names = $_POST['attributename'];
+        $attribute_types = $_POST['attributetype'];
+
+        $myarray = array();
+        $i = count($attribute_names);
+        for($x =0; $x < $i; $x++) {
+            $myarray += [$attribute_names[$x]=>$attribute_types[$x]];
+            if (DB::table('attributes')->where('name', $attribute_names[$x])->first()) {
+                //
+            } else {
+            Attribute::create([
+                'name' => strtolower($attribute_names[$x]),
+                'type' => strtolower($attribute_types[$x]),
+                ]);
+            }
+        };
+        return view('show_personaliser', compact('myarray'));
+        //return Redirect::route('ProductsController@personalise_create_form')->with('myarray', $myarray);
     }
 
     /**
@@ -131,9 +148,50 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+
+    public function personalise_create_update()
     {
-        //
+        // $actions = $request->route()->getAction();
+        $post_names = array_keys($_POST);
+
+        $my = array();
+        $i = count($post_names);
+        for($x =1; $x < $i; $x++) {
+            $my += [$post_names[$x]=>$_POST[$post_names[$x]]];
+            $find_id = Attribute::where('name', $post_names[$x])->firstOrFail();
+            AttributeOption::create([
+                'value' => $_POST[$post_names[$x]],
+                'attributes_id' => $find_id->id,
+            ]);
+        }
+
+        return view('show_personaliser')->with('my', $my);
+    }
+
+    public function personalise_create()
+    {
+        // return view('show_personaliser');
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//

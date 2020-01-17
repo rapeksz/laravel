@@ -116,6 +116,38 @@
     }
     </script>
 
+    <script>
+
+    function addAttribute() {
+
+        // Attribute NAME input creator
+        var attr_name_place = document.getElementsByName('placeForAttrName')[0];
+        var attr_name_input = document.createElement('div');
+        attr_name_input.className = 'form-group';
+        attr_name_place.appendChild(attr_name_input);
+        var x = document.createElement('input');
+        x.type = 'text';
+        x.className = 'form-control';
+        x.name = 'attributename[]'; // add + 1
+        x.placeholder = 'Attribute name';
+        attr_name_input.appendChild(x);
+
+        // Attribute TYPE input creator
+        var attr_type_place = document.getElementsByName('placeForAttrType')[0];
+        var attr_type_input = document.createElement('div');
+        attr_type_input.className = 'form-group';
+        attr_type_place.appendChild(attr_type_input);
+        var y = document.createElement('input');
+        y.type = 'text';
+        y.className = 'form-control';
+        y.name = 'attributetype[]';
+        y.placeholder = 'Attribute type';
+        attr_type_input.appendChild(y);
+
+    }
+
+    </script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
