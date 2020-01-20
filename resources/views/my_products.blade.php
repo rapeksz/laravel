@@ -13,9 +13,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">User</th>
-                <th scope="col">Color</th>
-                <th scope="col">Height</th>
-                <th scope="col">Width</th>
+                <th scope="col">Product name</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -25,9 +23,7 @@
             <tr>
                 <th scope="row">{{ $user_product->id }}</th>
                 <td>{{ $user->name }}</td>
-                <td>{{ $user_product->color }}</td>
-                <td>{{ $user_product->height }}</td>
-                <td>{{ $user_product->width }}</td>
+                <td>{{ $user_product->name }}</td>
                 <td>
                     <a href="/myaccount/products/{{ $user_product->id }}">Edit</a>
                 </td>
@@ -40,7 +36,7 @@
 
     <div class="row">
         <div class="col-md-4">
-            <a href="/product-configurator"><button type="submit" class="btn btn-success btn-block">Add new product</button></a>
+            <a href="/personalised-product"><button type="submit" class="btn btn-success btn-block">Add new product</button></a>
         </div>
     </div>
 

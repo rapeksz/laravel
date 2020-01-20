@@ -17,7 +17,7 @@ class AttributeOption extends Model
 
     public function customisedProduct()
     {
-        return $this->belongsToMany('App\CustomisedProduct', 'attr_opt_prod', 'attribute_options_id', 'customised_products_id');
+        return $this->belongsToMany('App\CustomisedProduct', 'attr_opt_prod', 'attributes_option_id', 'customised_products_id');
     }
 
     public function attribute()

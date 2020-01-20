@@ -127,15 +127,15 @@ class ProductsController extends Controller
         $myarray = array();
         $i = count($attribute_names);
         for($x =0; $x < $i; $x++) {
-            $myarray += [$attribute_names[$x]=>$attribute_types[$x]];
-            if (DB::table('attributes')->where('name', $attribute_names[$x])->first()) {
-                //
-            } else {
+            $myarray += [strtolower($attribute_names[$x])=>strtolower($attribute_types[$x])];
+            // if (DB::table('attributes')->where('name', $attribute_names[$x])->first()) {
+            //     //
+            // } else {
             Attribute::create([
                 'name' => strtolower($attribute_names[$x]),
                 'type' => strtolower($attribute_types[$x]),
                 ]);
-            }
+            //}
         };
         return view('show_personaliser', compact('myarray'));
         //return Redirect::route('ProductsController@personalise_create_form')->with('myarray', $myarray);
@@ -149,23 +149,34 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function personalise_create_update()
+    public function personalise_create_update(Request $request)
     {
-        // $actions = $request->route()->getAction();
+        // all keys from $_POST array
         $post_names = array_keys($_POST);
 
         $my = array();
         $i = count($post_names);
-        for($x =1; $x < $i; $x++) {
-            $my += [$post_names[$x]=>$_POST[$post_names[$x]]];
-            $find_id = Attribute::where('name', $post_names[$x])->firstOrFail();
-            AttributeOption::create([
+
+        // follow all keys from $_POST array except token = 0 and name = 1
+        for($x =2; $x < $i; $x++) {
+            $my += [strtolower($post_names[$x])=>strtolower($_POST[$post_names[$x]])];
+            $find_id = Attribute::where('name', $post_names[$x])->orderBy('created_at','desc')->firstOrFail();
+            $attribute_option = AttributeOption::create([
                 'value' => $_POST[$post_names[$x]],
                 'attributes_id' => $find_id->id,
             ]);
+            $attribute_option->customisedProduct()->attach(Auth::user()->first());
+            //return $attribute_option;
         }
 
-        return view('show_personaliser')->with('my', $my);
+        $product_name = $request->input('personalised_name');
+        CustomisedProduct::create([
+            'name' => request('personalised_name'),
+            'user_id' => Auth::id(),
+        ]);
+
+        return view('show_personaliser')->with('my', $my)->with('product_name', $product_name)
+            ->with('success', 'Product has been created!');
     }
 
     public function personalise_create()
