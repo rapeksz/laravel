@@ -18,6 +18,8 @@
                 @foreach ($myarray as $key => $value)
                     <div class="form-group">
                         <label>{{ ucfirst($key) }}</label>
+
+                        {{-- CHANGE TYPES ! --}}
                         <input type="{{ strtolower($value) }}" class="form-control" name="{{ strtolower($key) }}">
                     </div>
                 @endforeach

@@ -22,7 +22,7 @@ class AttributeOption extends Model
 
     public function attribute()
     {
-        return $this->belongsTo('App\Attribute');
+        return $this->belongsTo('App\Attribute', 'attributes_id' );
     }
 
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\AttributeOption;
 use App\CustomisedProduct;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -64,11 +65,10 @@ class UsersController extends Controller
      */
     public function show_personalised_product($id)
     {
-        $product = CustomisedProduct::find($id);
-        $product_attributes_option = $product->attributeOption;
-        $product_attributes = $product_attributes_option->attributes;
+        $producto = CustomisedProduct::find($id);
+        $product_attributes_option = $producto->attributeOption;
 
-        return view('personalised_product', compact('product', 'product_attributes', 'product_attributes_option'));
+        return view('personalised_product', compact('producto', 'product_attributes_option'));
     }
 
     /**

@@ -151,6 +151,12 @@ class ProductsController extends Controller
 
     public function personalise_create_update(Request $request)
     {
+        $product_name = $request->input('personalised_name');
+        CustomisedProduct::create([
+            'name' => request('personalised_name'),
+            'user_id' => Auth::id(),
+        ]);
+
         // all keys from $_POST array
         $post_names = array_keys($_POST);
 
@@ -165,15 +171,11 @@ class ProductsController extends Controller
                 'value' => $_POST[$post_names[$x]],
                 'attributes_id' => $find_id->id,
             ]);
-            $attribute_option->customisedProduct()->attach(Auth::user()->first());
+
+            //
+            $attribute_option->customisedProduct()->attach(CustomisedProduct::where('name', $request->input('personalised_name'))->first());
             //return $attribute_option;
         }
-
-        $product_name = $request->input('personalised_name');
-        CustomisedProduct::create([
-            'name' => request('personalised_name'),
-            'user_id' => Auth::id(),
-        ]);
 
         return view('show_personaliser')->with('my', $my)->with('product_name', $product_name)
             ->with('success', 'Product has been created!');
