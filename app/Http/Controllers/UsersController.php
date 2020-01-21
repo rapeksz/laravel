@@ -65,10 +65,10 @@ class UsersController extends Controller
      */
     public function show_personalised_product($id)
     {
-        $producto = CustomisedProduct::find($id);
-        $product_attributes_option = $producto->attributeOption;
+        $product = CustomisedProduct::find($id);
+        $product_attributes_option = $product->attributeOption;
 
-        return view('personalised_product', compact('producto', 'product_attributes_option'));
+        return view('personalised_product', compact('product', 'product_attributes_option'));
     }
 
     /**

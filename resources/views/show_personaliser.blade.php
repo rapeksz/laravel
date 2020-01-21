@@ -6,7 +6,7 @@
     @include('flashmessages')
     <div class="row">
 
-        {{-- Place for form with parametres --}}
+        {{-- Place for our form with parametres --}}
         <div class="col-md-3">
             @if(isset($myarray))
             <form action="{{ action('ProductsController@personalise_create_update') }}" method="post">
@@ -27,7 +27,7 @@
                 <button type="button" class="btn btn-success btn-block">Preview</button>
             </form>
             @else
-
+                {{--  --}}
             @endif
 
             @if (isset($my))
@@ -72,15 +72,6 @@
                 @endforeach
                 ">
                 </div>
-                {{-- <div>
-                @foreach ($my as $key => $value)
-                    @if ($key == 'height' || $key == 'width' || $key == 'border-radius' || $key == 'border-width')
-                        {{ $key }}:{{ $value }}px;
-                    @else
-                        {{ $key }}:{{ $value }};
-                    @endif
-                @endforeach
-                </div> --}}
             @endif
             </div>
         </div>
