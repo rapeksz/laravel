@@ -39,7 +39,7 @@
                 {{ csrf_field() }}
                 <button type="submit" class="btn btn-danger btn-block" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
             </form>
-            <button type="button" class="btn btn-success btn-block">Preview</button>
+            <button type="button" class="btn btn-success btn-block" onclick="showProduct()">Preview</button>
             @endif
 
         </div>

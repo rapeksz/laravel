@@ -24,7 +24,7 @@
                     </div>
                 @endforeach
                 <button type="submit" class="btn btn-primary btn-block">Generate</button>
-                <button type="button" class="btn btn-success btn-block">Preview</button>
+                <button type="button" class="btn btn-success btn-block" onclick="showProduct()">Preview</button>
             </form>
             @else
                 {{--  --}}
@@ -50,7 +50,7 @@
                 @endforeach
             </form>
             <a href="/personalised-product"><button class="btn btn-primary btn-block">Add new product</button></a>
-            <button type="button" class="btn btn-success btn-block">Preview</button>
+            <button type="button" class="btn btn-success btn-block" onclick="showProduct()">Preview</button>
             @endif
 
         </div>

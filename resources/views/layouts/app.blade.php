@@ -145,6 +145,39 @@
         attr_type_input.appendChild(y);
 
     }
+    </script>
+
+    <script>
+
+        function showProduct() {
+
+            var a = document.querySelectorAll('input');
+            var a_length = a.length - 11;
+
+            var el = document.getElementsByName('placeForPersonalisedProduct')[0];
+            var prod = document.createElement('div');
+            prod.className = 'preview-product';
+
+            for (var i = 4; i < a_length; i ++) {
+                if (a[i].name == 'height') {
+                    prod.style.height = a[i].value + "px";
+                } else if (a[i].name == 'width') {
+                    prod.style.width = a[i].value + "px";
+                } else if (a[i].name == 'color' || a[i].name == 'background-color') {
+                    prod.style.backgroundColor = a[i].value;
+                } else if (a[i].name == 'border-width') {
+                    prod.style.borderWidth = a[i].value + "px";
+                } else if (a[i].name == 'border-color') {
+                    prod.style.borderColor = a[i].value;
+                } else if (a[i].name == 'border-style') {
+                    prod.style.borderStyle = a[i].value;
+                } else if (a[i].name == 'border-radius') {
+                    prod.style.borderRadius = a[i].value + "px";
+                }
+            }
+            el.appendChild(prod);
+
+        }
 
     </script>
 
