@@ -29,7 +29,7 @@ class AdminController extends Controller
 
     public function show_products()
     {
-        $products = Product::get();
+        $products = CustomisedProduct::get();
         return view('admin.products')->with('products', $products);
     }
 

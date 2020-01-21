@@ -164,7 +164,7 @@ class ProductsController extends Controller
         $i = count($post_names);
 
         // follow all keys from $_POST array except token = 0 and name = 1
-        for($x =2; $x < $i; $x++) {
+        for($x = 2; $x < $i; $x++) {
             $my += [strtolower($post_names[$x])=>strtolower($_POST[$post_names[$x]])];
             $find_id = Attribute::where('name', $post_names[$x])->orderBy('created_at','desc')->firstOrFail();
             $attribute_option = AttributeOption::create([

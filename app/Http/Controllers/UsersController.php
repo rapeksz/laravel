@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Attribute;
 use App\AttributeOption;
 use App\CustomisedProduct;
 use Illuminate\Support\Facades\Auth;
@@ -80,12 +81,26 @@ class UsersController extends Controller
      */
     public function update_product(Request $request, $id)
     {
-        $update_product = Product::find($id);
-        $update_product->color = request('color-picker');
-        $update_product->height = request('height-picker');
-        $update_product->width = request('width-picker');
+        $update_product = CustomisedProduct::find($id);
+        $update_product->name = request('personalised_name');
         $update_product->save();
-        return redirect('/myaccount/products');
+
+        $update_product_values = $update_product->attributeOption;
+        $post_names = array_keys($_POST);
+        $i = count($post_names);
+        $x = 3;
+
+        // foreach option value
+        foreach ($update_product_values as $value) {
+            if ($x < count($post_names)) {
+                $value->value = $_POST[$post_names[$x]];
+                $value->save();
+                $x++;
+            } else {
+                break;
+            }
+        }
+        return redirect('myaccount/products');
     }
 
     /**
@@ -96,7 +111,7 @@ class UsersController extends Controller
      */
      public function delete_product($id)
      {
-         DB::table('products')->where('id', $id)->delete();
+         $product = CustomisedProduct::find($id)->delete();
          return redirect('/myaccount/products');
      }
 }

@@ -43,11 +43,13 @@ Route::middleware('verified')->group(function () {
 
         Route::get('/myaccount/products', 'UsersController@show_allproducts')
             ->name('myaccount.show_allproducts');
-        Route::get('myaccount/products/{id}', 'UsersController@show_personalised_product' )
+
+        Route::get('/myaccount/products/{id}', 'UsersController@show_personalised_product' )
             ->name('myaccount.show_product');
 
         Route::delete('/myaccount/products/{id}', 'UsersController@delete_product')
             ->name('myaccount.delete_product');
+
         Route::put('/myaccount/products/{id}', 'UsersController@update_product')
             ->name('myaccount.update_product');
 

@@ -3,8 +3,6 @@
 
 @section('content')
 
-
-
 <div class="container">
     <table class="table">
 
@@ -12,22 +10,18 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">User</th>
-                <th scope="col">Color</th>
-                <th scope="col">Height</th>
-                <th scope="col">Width</th>
+                <th scope="col">Namer</th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-        @foreach ($products as $product)
+        @foreach($products as $product)
             <tr>
                 <th scope="row">{{ $product->id }}</th>
-                <td>{{ $product->user['name'] }}</td>
-                <td>{{ $product->color }}</td>
-                <td>{{ $product->height }}</td>
-                <td>{{ $product->width }}</td>
+                <td>{{ $product->user->name }}</td>
+                <td>{{ $product->name }}</td>
                 <td>
-                    <a href="/admin/product/{{ $product->id }}">Edit</a>
+                    <a href="/myaccount/products/{{ $product->id }}">Edit</a>
                 </td>
 
             </tr>
