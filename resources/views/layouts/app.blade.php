@@ -151,9 +151,20 @@
 
         function showProduct() {
 
+            var el_one = document.getElementsByName('placeForPersonalisedProduct')[0];
+            var el_two = document.getElementsByClassName('personalisedProduct')[0];
+            var el_three = document.getElementsByClassName('preview-product')[0];
+
+            if(el_three) {
+                el_one.removeChild(el_three)
+            } else if (el_two) {
+                el_one.removeChild(el_two)
+            } else {
+                //
+            }
+
             var a = document.querySelectorAll('input');
             var a_length = a.length - 11;
-
             var el = document.getElementsByName('placeForPersonalisedProduct')[0];
             var prod = document.createElement('div');
             prod.className = 'preview-product';
@@ -176,10 +187,56 @@
                 }
             }
             el.appendChild(prod);
+        }
+    </script>
 
+    <script>
+
+
+        function showProductTwo() {
+
+            var el_one = document.getElementsByName('placeForPersonalisedProduct')[0];
+            var el_two = document.getElementsByClassName('personalisedProduct')[0];
+            var el_three = document.getElementsByClassName('preview-product')[0];
+
+            if(el_three) {
+                el_one.removeChild(el_three)
+            } else if (el_two) {
+                el_one.removeChild(el_two)
+            } else {
+                //
+            }
+
+            var el = document.getElementsByName('placeForPersonalisedProduct')[0];
+            var prod = document.createElement('div');
+            prod.className = 'preview-product';
+
+            var b = document.querySelectorAll('input');
+            var b_length = b.length-10;
+
+            for (var i = 3; i < b_length; i++ ) {
+                if (b[i].name == 'height') {
+                    prod.style.height = b[i].value + "px";
+                } else if (b[i].name == 'width') {
+                    prod.style.width = b[i].value + "px";
+                } else if (b[i].name == 'color' || b[i].name == 'background-color') {
+                    prod.style.backgroundColor = b[i].value;
+                } else if (b[i].name == 'border-width') {
+                    prod.style.borderWidth = b[i].value + "px";
+                } else if (b[i].name == 'border-color') {
+                    prod.style.borderColor = b[i].value;
+                } else if (b[i].name == 'border-style') {
+                    prod.style.borderStyle = b[i].value;
+                } else if (b[i].name == 'border-radius') {
+                    prod.style.borderRadius = b[i].value + "px";
+                }
+            }
+
+            el.appendChild(prod)
         }
 
     </script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
