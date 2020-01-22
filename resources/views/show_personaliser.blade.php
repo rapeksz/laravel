@@ -24,7 +24,7 @@
                     </div>
                 @endforeach
                 <button type="submit" class="btn btn-primary btn-block">Generate</button>
-                <button type="button" class="btn btn-success btn-block" onclick="showProduct()">Preview</button>
+                <button type="button" class="btn btn-success btn-block" onclick="showProductTwo()">Preview</button>
             </form>
             @else
                 {{--  --}}
@@ -41,16 +41,16 @@
                     <label>{{ ucfirst($key) }}</label>
                     <input type="
                     @if ($key =='height' || $key =='width' || $key == 'border-radius' || $key == 'border-width')
-                        integer
+                        number
                     @else
-                        string
+                        text
                     @endif
                     " class="form-control" value="{{ $value }}" name="{{ $key }}">
                 </div>
                 @endforeach
             </form>
             <a href="/personalised-product"><button class="btn btn-primary btn-block">Add new product</button></a>
-            <button type="button" class="btn btn-success btn-block" onclick="showProduct()">Preview</button>
+            <button type="button" class="btn btn-success btn-block" onclick="showProductTwo()">Preview</button>
             @endif
 
         </div>

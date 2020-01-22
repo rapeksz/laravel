@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\CustomisedProduct;
 use App\User;
 use App\Role;
 use Illuminate\Support\Facades\DB;

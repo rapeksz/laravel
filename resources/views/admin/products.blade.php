@@ -8,9 +8,9 @@
 
         <thead class="thead-dark">
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">User</th>
-                <th scope="col">Namer</th>
+                <th scope="col">Id</th>
+                <th scope="col">Producer</th>
+                <th scope="col">Name</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -21,9 +21,8 @@
                 <td>{{ $product->user->name }}</td>
                 <td>{{ $product->name }}</td>
                 <td>
-                    <a href="/myaccount/products/{{ $product->id }}">Edit</a>
+                    <a href="/myaccount/products/{{ $product->id }}"><button type="submit" class="btn btn-primary btn-block">Preview</button></a>
                 </td>
-
             </tr>
         @endforeach
         </tbody>
