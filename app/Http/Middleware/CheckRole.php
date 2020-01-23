@@ -16,16 +16,9 @@ class CheckRole
      */
     public function handle($request, Closure $next)
     {
-        // if user is logged in
         if (Auth::check()) {
-            // Actions of given route
             $actions = $request->route()->getAction();
-            // Prints above-mentioned actions
-            //print_r($actions);
-
-            // $actions['roles'] -> web.php -> 'roles' => 'Admin' / ['Admin', 'User']
             $roles = (isset($actions['roles']) ? $actions['roles'] : null);
-
             if ($request->user()->hasAnyRole($roles) || !$roles) {
                 return $next($request);
             }

@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="container">
-    @include('flashmessages')
+    @include('inc.flashmessages')
     <div class="row">
         <div class="col-md-3">
             <form action="{{ action('UsersController@update_product', $product->id) }}" method="post">

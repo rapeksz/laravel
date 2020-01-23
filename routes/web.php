@@ -13,7 +13,7 @@ use App\Http\Controllers\ProductsController;
 |
 */
 
-// URLs available for everyone
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,19 +27,13 @@ Route::middleware('verified')->group(function () {
     Route::middleware('roles')->group(function () {
 
         Route::get('/personalised-product', 'ProductsController@personalise');
+
         Route::post('/personalised-product', 'ProductsController@personalise_add_attributes');
 
-        Route::post('/personalised-product/generator', 'ProductsController@personalise_create_update');
+        Route::post('/personalised-product/generator', 'ProductsController@test_personalise');
+        // Route::post('/personalised-product/generator', 'ProductsController@personalise_create_update');
+
         Route::get('/personalised-product/generator', 'ProductsController@personalise_create');
-
-        Route::get('/customised-product', 'ProductsController@customise');
-        Route::post('/customised-product', 'ProductsController@customise_store');
-
-        Route::get('/product-configurator', 'ProductsController@create')
-            ->name('configurator.create');
-
-        Route::post('/product-configurator', 'ProductsController@store')
-            ->name('configurator.store');
 
         Route::get('/myaccount/products', 'UsersController@show_allproducts')
             ->name('myaccount.show_allproducts');
@@ -52,16 +46,11 @@ Route::middleware('verified')->group(function () {
 
         Route::put('/myaccount/products/{id}', 'UsersController@update_product')
             ->name('myaccount.update_product');
-
-
     });
 
-    // URLS with admin prefix entered by admin only - grouping middleware by role "admin"
     Route::group([
-        // naming doesn't work
         'name' => 'admin.',
         'middleware' => 'roles',
-        // 'roles' is a parameter of a group
         'roles' => 'Admin',
         'prefix' => 'admin'
     ], function () {
@@ -83,13 +72,5 @@ Route::middleware('verified')->group(function () {
 
         Route::get('/products', 'AdminController@show_products')->name('products');
 
-        Route::get('/product/{id}', 'AdminController@show_product')
-            ->where('id', '[0-9]+')->name('show_product');
-
-        Route::put('/product/{id}', 'AdminController@update_product')
-            ->where('id', '[0-9]+')->name('update_product');
-
-        Route::delete('/product/{id}', 'AdminController@delete_product')
-            ->where('id', '[0-9]+')->name('delete_product');
     });
 });

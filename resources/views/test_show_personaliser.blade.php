@@ -9,18 +9,19 @@
         {{-- Place for our form with parametres --}}
         <div class="col-md-3">
             @if(isset($myarray))
-            <form action="{{ action('ProductsController@personalise_create_update') }}" method="post">
+            <form action="{{ action('ProductsController@test_personalise') }}" method="post">
                 {{ csrf_field() }}
                     <div class="form-group">
                         <label>Name</label>
                         <input type="text" class="form-control" name="personalised_name">
                     </div>
                 @foreach ($myarray as $key => $value)
-                    <div class="form-group">
+                    <div class="form-group" name="{{ strtolower($key) }}">
                         <label>{{ ucfirst($key) }}</label>
 
                         {{-- CHANGE TYPES ! --}}
-                        <input type="{{ strtolower($value) }}" class="form-control" name="{{ strtolower($key) }}">
+                        <input type="{{ strtolower($value) }}" class="form-control" name="{{ strtolower($key) }}[]">
+                        <button type="button" class="btn btn-light btn-block" name="{{ strtolower($key) }}" id="{{ strtolower($key) }}" onclick="addInput(this.id)">Add new value</button>
                     </div>
                 @endforeach
                 <button type="submit" class="btn btn-primary btn-block">Generate</button>
