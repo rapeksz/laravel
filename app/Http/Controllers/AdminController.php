@@ -25,7 +25,7 @@ class AdminController extends Controller
     public function show_products()
     {
         $products = CustomisedProduct::get();
-        return view('admin.products')->with('products', $products);
+        return view('admin.products', compact('products'));
     }
 
     /*
@@ -34,7 +34,7 @@ class AdminController extends Controller
     public function show_users()
     {
         $users = User::get();
-        return view('admin.users')->with('users', $users);
+        return view('admin.users', compact('users'));
     }
 
     /*
@@ -43,7 +43,7 @@ class AdminController extends Controller
     public function show_user($id)
     {
         $user = User::find($id);
-        return view('admin.show_user')->with('user', $user);
+        return view('admin.show_user', compact('user'));
     }
 
     /*

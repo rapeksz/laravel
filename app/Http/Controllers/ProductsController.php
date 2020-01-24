@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Redirect;
 class ProductsController extends Controller
 {
     /*
-        Create attributes - forms
+        Create attributes - show forms
     */
     public function personalise()
     {
@@ -31,8 +31,10 @@ class ProductsController extends Controller
         $attributeNames = $_POST['attributename'];
         // Getting all values with name 'attributetype' sent by POST
         $attributeTypes = $_POST['attributetype'];
+        // Associative array for storing attributes - name => type
         $newArray = array();
         $i = count($attributeNames);
+        // Creating attributes and associative array needed for test_show_personaliser view
         for($x = 0; $x < $i; $x++) {
             $newArray += [strtolower($attributeNames[$x])=>strtolower($attributeTypes[$x])];
             Attribute::create([
@@ -53,25 +55,27 @@ class ProductsController extends Controller
             'user_id' => Auth::id(),
         ]);
 
+        // $_POST array keys sent by POST
         $attributes = array_keys($_POST);
         $amount = count($attributes);
-
-
-        // Getting attributes, omitting 2 parametres sent by POST -> token=0 and personalised_name=1
+        // Getting attributes, omitting 2 parametres sent by POST -> token = 0 and personalised_name = 1
         for ($x = 2; $x < $amount; $x++) {
 
             $lastAttribute = Attribute::where('name', $attributes[$x])->orderBy('created_at','desc')->firstOrFail();
-
+            // if attribute option is array
             if (is_array($_POST[$attributes[$x]])) {
-
+                // foreach attribute option create option in DB
                 foreach ($_POST[$attributes[$x]] as $value) {
-                $attributeValue = AttributeOption::create([
-                    'value' => $value,
-                    'attributes_id' => $lastAttribute->id,
-                ]);
+                    $attributeValue = AttributeOption::create([
+                        'value' => $value,
+                        'attributes_id' => $lastAttribute->id,
+                    ]);
+                // assign product to attribute option
                 $attributeValue->customisedProduct()->attach(CustomisedProduct::where('name', $request->input('personalised_name'))->first());
                 }
+            // if attribute option is not array
             } else {
+                // create option in DB
                 $attributeValue = AttributeOption::create([
                     'value' => $_POST[$attributes[$x]],
                     'attributes_id' => $lastAttribute->id,
@@ -79,11 +83,12 @@ class ProductsController extends Controller
                 $attributeValue->customisedProduct()->attach(CustomisedProduct::where('name', $request->input('personalised_name'))->first());
             }
         }
-
+        // take latest created attributes
         $getAttributes = Attribute::orderBy('id', 'desc')->take($amount-2)->get();
+        // take last product
         $product = CustomisedProduct::orderBy('id', 'desc')->first();
 
-        return view('test_final_view')->with('product',$product)->with('getAttributes', $getAttributes);
+        return view('test_final_view',compact('product','getAttributes'));
     }
 
 }

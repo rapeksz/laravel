@@ -28,6 +28,7 @@ class UsersController extends Controller
     public function show_personalised_product($id)
     {
         $product = CustomisedProduct::find($id);
+        // get product's attribute options
         $productValues = $product->attributeOption;
         return view('personalised_product', compact('product', 'productValues'));
     }
@@ -41,14 +42,18 @@ class UsersController extends Controller
         $updateProduct->name = request('personalised_name');
         $updateProduct->save();
 
+        // get product's attribute options - one to many relationship
         $productValues = $updateProduct->attributeOption;
+        // $_POST array keys sent by POST
         $postNames = array_keys($_POST);
         $i = count($postNames);
+        // starting from x = 3, $_POST[$postNames[3] - our first attribute
         $x = 3;
 
-        // foreach option value
+        // updating in db - foreach old option value get new
         foreach ($productValues as $value) {
             if ($x < count($postNames)) {
+                // $_POST[$postNames[$x] = starting from [3] which is our first attribute
                 $value->value = $_POST[$postNames[$x]];
                 $value->save();
                 $x++;

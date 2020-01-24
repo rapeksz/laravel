@@ -71,7 +71,7 @@
             var inputTags = document.getElementsByTagName('select');
             var inputTagsLength = inputTags.length;
 
-            // not finished, cannot read property 'name' of undefined
+            // not finished
             for (var i = 0; i < 2; inputTags++) {
                 if (inputTags[i].name == 'height') {
                     preview.style.height = inputTags[i].value + "px";
