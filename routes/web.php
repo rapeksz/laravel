@@ -22,7 +22,6 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Entered by users with roles = logged in
 Route::middleware('verified')->group(function () {
     Route::middleware('roles')->group(function () {
 

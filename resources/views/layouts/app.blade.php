@@ -18,159 +18,95 @@
     function addAttribute() {
 
         // Attribute NAME input creator
-        var attr_name_place = document.getElementsByName('placeForAttrName')[0];
-        var attr_name_input = document.createElement('div');
-        attr_name_input.className = 'form-group';
-        attr_name_place.appendChild(attr_name_input);
-        var x = document.createElement('input');
-        x.type = 'text';
-        x.className = 'form-control';
-        x.name = 'attributename[]'; // add + 1
-        x.placeholder = 'Attribute name';
-        attr_name_input.appendChild(x);
+        var attrNamePlace = document.getElementsByName('placeForAttrName')[0];
+        var attrNameDiv = document.createElement('div');
+        attrNameDiv.className = 'form-group';
+        attrNamePlace.appendChild(attrNameDiv);
+        var nameInput = document.createElement('input');
+        nameInput.type = 'text';
+        nameInput.className = 'form-control';
+        nameInput.name = 'attributename[]';
+        nameInput.placeholder = 'Attribute name';
+        attrNameDiv.appendChild(nameInput);
 
         // Attribute TYPE input creator
-        var attr_type_place = document.getElementsByName('placeForAttrType')[0];
-        var attr_type_div = document.createElement('div');
-        var attr_type_select = document.createElement('select');
-
-        attr_type_div.className = 'form-group';
-
-        attr_type_place.appendChild(attr_type_div);
-
-        var x = document.createElement('option');
-        var y = document.createElement('option');
-        var z = document.createElement('option');
-        var a = document.createElement('option');
-        x.text = "integer";
-        y.text = "string";
-        z.text = "float";
-        a.text = "Choose type";
-        a.selected = 'true';
-        attr_type_select.add(a);
-        attr_type_select.add(x);
-        attr_type_select.add(y);
-        attr_type_select.add(z);
-        attr_type_select.name = 'attributetype[]';
-        attr_type_select.className = 'form-control';
-        attr_type_div.appendChild(attr_type_select);
-        // attr_type_select.options[attr_type_select.options.selectedIndex].selected = true;
-        // var attr_type_input = document.createElement('div');
-        // attr_type_input.className = 'form-group';
-        // attr_type_place.appendChild(attr_type_input);
-        // var y = document.createElement('input');
-        // y.type = 'text';
-        // y.className = 'form-control';
-        // y.name = 'attributetype[]';
-        // y.placeholder = 'Attribute type';
-        // attr_type_input.appendChild(y);
+        var attrTypePlace = document.getElementsByName('placeForAttrType')[0];
+        var attrTypeDiv = document.createElement('div');
+        var attrTypeSelect = document.createElement('select');
+        attrTypeDiv.className = 'form-group';
+        attrTypePlace.appendChild(attrTypeDiv);
+        var optionOne = document.createElement('option');
+        var optionTwo = document.createElement('option');
+        var optionThree = document.createElement('option');
+        var optionFour = document.createElement('option');
+        optionOne.text = "integer";
+        optionTwo.text = "string";
+        optionThree.text = "float";
+        optionFour.text = "Choose type";
+        optionFour.selected = 'true';
+        attrTypeSelect.add(optionFour);
+        attrTypeSelect.add(optionOne);
+        attrTypeSelect.add(optionTwo);
+        attrTypeSelect.add(optionThree);
+        attrTypeSelect.name = 'attributetype[]';
+        attrTypeSelect.className = 'form-control';
+        attrTypeDiv.appendChild(attrTypeSelect);
     }
     </script>
-
     <script>
 
-        function showProduct() {
+        function addPreview() {
 
-            var el_one = document.getElementsByName('placeForPersonalisedProduct')[0];
-            var el_two = document.getElementsByClassName('personalisedProduct')[0];
-            var el_three = document.getElementsByClassName('preview-product')[0];
+            var placeProduct = document.getElementsByName('placeForPersonalisedProduct')[0];
+            var previewProduct = document.getElementsByClassName('preview-product')[0];
 
-            if(el_three) {
-                el_one.removeChild(el_three)
-            } else if (el_two) {
-                el_one.removeChild(el_two)
+            if(previewProduct) {
+                placeProduct.removeChild(previewProduct)
             } else {
                 //
             }
 
-            var a = document.querySelectorAll('input');
-            var a_length = a.length - 11;
-            var el = document.getElementsByName('placeForPersonalisedProduct')[0];
-            var prod = document.createElement('div');
-            prod.className = 'preview-product';
+            var preview = document.createElement('div');
+            preview.className = 'preview-product';
+            var inputTags = document.getElementsByTagName('select');
+            var inputTagsLength = inputTags.length;
 
-            for (var i = 4; i < a_length; i ++) {
-                if (a[i].name == 'height') {
-                    prod.style.height = a[i].value + "px";
-                } else if (a[i].name == 'width') {
-                    prod.style.width = a[i].value + "px";
-                } else if (a[i].name == 'color' || a[i].name == 'background-color') {
-                    prod.style.backgroundColor = a[i].value;
-                } else if (a[i].name == 'border-width') {
-                    prod.style.borderWidth = a[i].value + "px";
-                } else if (a[i].name == 'border-color') {
-                    prod.style.borderColor = a[i].value;
-                } else if (a[i].name == 'border-style') {
-                    prod.style.borderStyle = a[i].value;
-                } else if (a[i].name == 'border-radius') {
-                    prod.style.borderRadius = a[i].value + "px";
+            // not finished, cannot read property 'name' of undefined
+            for (var i = 0; i < 2; inputTags++) {
+                if (inputTags[i].name == 'height') {
+                    preview.style.height = inputTags[i].value + "px";
+                } else if (inputTags[i].name == 'width') {
+                    preview.style.width = inputTags[i].value + "px";
+                } else if (inputTags[i].name == 'color' || inputTags[i].name == 'background-color') {
+                    preview.style.backgroundColor = inputTags[i].value;
+                } else if (inputTags[i].name == 'border-width') {
+                    preview.style.borderWidth = inputTags[i].value + "px";
+                } else if (inputTags[i].name == 'border-color') {
+                    preview.style.borderColor = inputTags[i].value;
+                } else if (inputTags[i].name == 'border-style') {
+                    preview.style.borderStyle = inputTags[i].value;
+                } else if (inputTags[i].name == 'border-radius') {
+                    preview.style.borderRadius = inputTags[i].value + "px";
+                } else {
+                    //
                 }
-            }
-            el.appendChild(prod);
+             }
+             placeProduct.appendChild(preview);
         }
-    </script>
 
+    </script>
     <script>
 
-        function showProductTwo() {
+        function addInput(buttonId) {
 
-            var el_one = document.getElementsByName('placeForPersonalisedProduct')[0];
-            var el_two = document.getElementsByClassName('personalisedProduct')[0];
-            var el_three = document.getElementsByClassName('preview-product')[0];
+            var buttonId = buttonId;
+            var divForm = document.getElementsByName(buttonId)[0];
+            var createdInput = document.createElement('input');
 
-            if(el_three) {
-                el_one.removeChild(el_three)
-            } else if (el_two) {
-                el_one.removeChild(el_two)
-            } else {
-                //
-            }
-
-            var el = document.getElementsByName('placeForPersonalisedProduct')[0];
-            var prod = document.createElement('div');
-            prod.className = 'preview-product';
-
-            var b = document.querySelectorAll('input');
-            var b_length = b.length-10;
-
-            for (var i = 3; i < b_length; i++ ) {
-                if (b[i].name == 'height') {
-                    prod.style.height = b[i].value + "px";
-                } else if (b[i].name == 'width') {
-                    prod.style.width = b[i].value + "px";
-                } else if (b[i].name == 'color' || b[i].name == 'background-color') {
-                    prod.style.backgroundColor = b[i].value;
-                } else if (b[i].name == 'border-width') {
-                    prod.style.borderWidth = b[i].value + "px";
-                } else if (b[i].name == 'border-color') {
-                    prod.style.borderColor = b[i].value;
-                } else if (b[i].name == 'border-style') {
-                    prod.style.borderStyle = b[i].value;
-                } else if (b[i].name == 'border-radius') {
-                    prod.style.borderRadius = b[i].value + "px";
-                }
-            }
-
-            el.appendChild(prod)
-        }
-    </script>
-
-    <script>
-
-        function addInput(button_id) {
-            var button_id = button_id;
-            var find_div_form = document.getElementsByName(button_id)[0];
-
-            var add_input = document.createElement('input');
-            add_input.type = 'text';
-            add_input.name = button_id + "[]";
-            add_input.className = 'form-control';
-            // find_div_form.appendChild(add_input);
-            find_div_form.insertBefore(add_input, find_div_form.lastChild);
-
-            // if button_id == width, height itp to type = number, else text
-
-
+            createdInput.type = 'text';
+            createdInput.name = buttonId + "[]";
+            createdInput.className = 'form-control';
+            divForm.insertBefore(createdInput, divForm.lastChild);
         }
 
     </script>

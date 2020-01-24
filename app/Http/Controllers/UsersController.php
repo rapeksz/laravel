@@ -12,38 +12,44 @@ use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
-    // Show all user's products
+    /*
+        Show all user's products
+    */
     public function show_allproducts()
     {
         $user = Auth::user();
-        $user_products = CustomisedProduct::where('user_id', $user->id)->get();
-        return view('my_products', compact('user', 'user_products'));
+        $userProducts = CustomisedProduct::where('user_id', $user->id)->get();
+        return view('my_products', compact('user', 'userProducts'));
     }
 
-    // Show single product
+    /*
+        Show single product
+    */
     public function show_personalised_product($id)
     {
         $product = CustomisedProduct::find($id);
-        $product_attributes_option = $product->attributeOption;
-        return view('personalised_product', compact('product', 'product_attributes_option'));
+        $productValues = $product->attributeOption;
+        return view('personalised_product', compact('product', 'productValues'));
     }
 
-    // Update single product
+    /*
+        Update single product
+    */
     public function update_product(Request $request, $id)
     {
-        $update_product = CustomisedProduct::find($id);
-        $update_product->name = request('personalised_name');
-        $update_product->save();
+        $updateProduct = CustomisedProduct::find($id);
+        $updateProduct->name = request('personalised_name');
+        $updateProduct->save();
 
-        $update_product_values = $update_product->attributeOption;
-        $post_names = array_keys($_POST);
-        $i = count($post_names);
+        $productValues = $updateProduct->attributeOption;
+        $postNames = array_keys($_POST);
+        $i = count($postNames);
         $x = 3;
 
         // foreach option value
-        foreach ($update_product_values as $value) {
-            if ($x < count($post_names)) {
-                $value->value = $_POST[$post_names[$x]];
+        foreach ($productValues as $value) {
+            if ($x < count($postNames)) {
+                $value->value = $_POST[$postNames[$x]];
                 $value->save();
                 $x++;
             } else {
@@ -53,7 +59,9 @@ class UsersController extends Controller
         return redirect('myaccount/products');
     }
 
-    // Delete single product
+    /*
+        Delete single product
+    */
      public function delete_product($id)
      {
          $product = CustomisedProduct::find($id)->delete();
