@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
-    /*
+    /*-
         Show all user's products
     */
     public function show_allproducts()
@@ -28,9 +28,27 @@ class UsersController extends Controller
     public function show_personalised_product($id)
     {
         $product = CustomisedProduct::find($id);
-        // get product's attribute options
-        $productValues = $product->attributeOption;
-        return view('personalised_product', compact('product', 'productValues'));
+
+        $productOptions = $product->attributeOption;
+        $attributesId = array();
+
+        // for each attribute option get attribute id -> create array with unique ids
+        foreach ($productOptions as $option) {
+            if (in_array($option->attributes_id, $attributesId)) {
+                //
+            } else {
+                array_push($attributesId, $option->attributes_id);
+            }
+        }
+        // array with found attributes, used in personalised_product view
+        $attributes = array();
+        /* based on attribute id from array $attributesId
+        get attribute object and add it to $attributes array */
+        foreach($attributesId as $attrId) {
+            array_push($attributes, Attribute::find($attrId));
+        }
+
+        return view('personalised_product', compact('product', 'attributes'));
     }
 
     /*
