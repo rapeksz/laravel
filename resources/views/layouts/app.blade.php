@@ -69,10 +69,9 @@
             var preview = document.createElement('div');
             preview.className = 'preview-product';
             var inputTags = document.getElementsByTagName('select');
-            var inputTagsLength = inputTags.length;
+            var inputTagsLength = inputTags.length-2;
 
-            // not finished
-            for (var i = 0; i < 2; inputTags++) {
+            for (var i = 0; i < inputTagsLength; i++) {
                 if (inputTags[i].name == 'height') {
                     preview.style.height = inputTags[i].value + "px";
                 } else if (inputTags[i].name == 'width') {
