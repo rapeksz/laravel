@@ -52,34 +52,34 @@ class UsersController extends Controller
     }
 
     /*
-        Update single product
+        Update single product - currently unavailable
     */
     public function update_product(Request $request, $id)
     {
-        $updateProduct = CustomisedProduct::find($id);
-        $updateProduct->name = request('personalised_name');
-        $updateProduct->save();
-
-        // get product's attribute options - one to many relationship
-        $productValues = $updateProduct->attributeOption;
-        // $_POST array keys sent by POST
-        $postNames = array_keys($_POST);
-        $i = count($postNames);
-        // starting from x = 3, $_POST[$postNames[3] - our first attribute
-        $x = 3;
-
-        // updating in db - foreach old option value get new
-        foreach ($productValues as $value) {
-            if ($x < count($postNames)) {
-                // $_POST[$postNames[$x] = starting from [3] which is our first attribute
-                $value->value = $_POST[$postNames[$x]];
-                $value->save();
-                $x++;
-            } else {
-                break;
-            }
-        }
-        return redirect('myaccount/products');
+        // $updateProduct = CustomisedProduct::find($id);
+        // $updateProduct->name = request('personalised_name');
+        // $updateProduct->save();
+        //
+        // // get product's attribute options - one to many relationship
+        // $productValues = $updateProduct->attributeOption;
+        // // $_POST array keys sent by POST
+        // $postNames = array_keys($_POST);
+        // $i = count($postNames);
+        // // starting from x = 3, $_POST[$postNames[3] - our first attribute
+        // $x = 3;
+        //
+        // // updating in db - foreach old option value get new
+        // foreach ($productValues as $value) {
+        //     if ($x < count($postNames)) {
+        //         // $_POST[$postNames[$x] = starting from [3] which is our first attribute
+        //         $value->value = $_POST[$postNames[$x]];
+        //         $value->save();
+        //         $x++;
+        //     } else {
+        //         break;
+        //     }
+        // }
+        // return redirect('myaccount/products');
     }
 
     /*
